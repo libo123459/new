@@ -185,6 +185,7 @@
      <Compile Include="Assets\NGUI\Scripts\UI\UIViewport.cs" />
      <Compile Include="Assets\scripts\Family.cs" />
      <Compile Include="Assets\scripts\Person.cs" />
+     <Compile Include="Assets\scripts\PersonBtn.cs" />
      <Compile Include="Assets\scripts\UImanage.cs" />
      <Compile Include="Assets\scripts\social.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />

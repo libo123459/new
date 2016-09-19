@@ -4,6 +4,7 @@ using System.Collections;
 
 public class social : MonoBehaviour {
     public GameObject person;
+    public UImanage uimanage;
 	public UIGrid grid;
     private string[] clan = new string[] { "Smith", "Jones", "Williams", "Taylor", "Brown", "Wilson"};
     private string[] MaleNames = new string[] { "Byron","Dick","Evan","James","Joseph","Alex", "Kim", "Bill", "Daniel", "David", "Paul", "Joe", "Peter", "Tom" };
@@ -23,6 +24,7 @@ public class social : MonoBehaviour {
         evolution();
         giveTheNumAndPrintName();
         printInfo();
+        uimanage.DisplayThePerson();
 	}
 
     void intiTheClan()                                                                  ///初始化家族
@@ -41,9 +43,9 @@ public class social : MonoBehaviour {
             {
 				
 				GameObject newperson = Instantiate(person.gameObject);
-				newperson.transform.parent = grid.transform;
-				newperson.transform.localScale = new Vector3(1,1,1);
-				
+                newperson.SetActive(false);
+				newperson.transform.parent = this.transform;
+								
 				newperson.GetComponent<Person>().PersonNum = i;
 		        newperson.GetComponent<Person>().single = true;                                                ///是否单身
                 newperson.GetComponent<Person>().sex = Mathf.Abs(1-j);                                         ///1为男性，0为女性
@@ -51,8 +53,6 @@ public class social : MonoBehaviour {
                 giveTheName(newperson.GetComponent<Person>(), Clan[i]);
                 newperson.GetComponent<Person>().ClanTag = Clan[i];
                 Popu.Add(newperson.GetComponent<Person>());                                                    ///整个人口的List
-                
-                grid.Reposition();
             }
         }
 
@@ -231,14 +231,12 @@ public class social : MonoBehaviour {
         for (int i = 0; i < AllFam.Count; i++)
         {
 			GameObject newperson = Instantiate(person);
-            newperson.transform.parent = grid.transform;
-            newperson.transform.localScale = new Vector3(1, 1, 1);
-            
+            newperson.SetActive(false);
+            newperson.transform.parent = this.transform;
+                        
             newperson.GetComponent<Person>().single = true;                                               
             newperson.GetComponent<Person>().sex = Random.Range(-1, 1);;                                         
-                                                        
-            grid.Reposition();
-                     
+           
             for (int j = 0; j < AllFam[i].Count; j++)
             {
                 newperson.GetComponent<Person>().ClanTag = AllFam[i][j].ClanTag;
@@ -283,7 +281,7 @@ public class social : MonoBehaviour {
             
             Person theperson = Popu[i];
             theperson.PersonNum = i;
-            theperson.text.text = GetTheName(i);
+            //theperson.text.text = GetTheName(i);
         }
     }
 
